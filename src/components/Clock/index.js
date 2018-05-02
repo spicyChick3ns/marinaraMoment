@@ -1,15 +1,15 @@
 import React from 'react';
 import ClockHeader from '../ClockHeader/index';
 import ClockDisplay from '../ClockDisplay/index';
+import ClockButton from '../ClockButton/index';
+
 const Clock =() => (
   <div className='container-fluid'>
 
     <ClockHeader/>
     <ClockDisplay/>
+    <ClockButton/>
 
-    <div className='row'>
-      <button className='btn btn-success center-block'>Start</button>
-    </div>
 
     <div className='row'>
       <h2 className='text-primary'>Set Timer</h2>
