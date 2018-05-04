@@ -11,6 +11,13 @@ class Clock extends Component {
       currentTime: moment.duration(25, 'minutes'),
       defaultTime: moment.duration(25, 'minutes')
     };
+    this.setDefaultTime = this.setDefaultTime.bind(this);
+  }
+  setDefaultTime(newDefaultTime) {
+    this.setState({
+      defaultTime: newDefaultTime,
+      currentTime: newDefaultTime
+    });
   }
   render() {
     return (
@@ -18,7 +25,10 @@ class Clock extends Component {
         <ClockHeader/>
         <ClockDisplay currentTime={this.state.currentTime}/>
         <ClockButton/>
-        <ClockConfig/>
+        <ClockConfig
+          defaultTime= {this.state.defaultTime}
+          setDefaultTime={this.setDefaultTime}
+        />
       </div>
     )
 
