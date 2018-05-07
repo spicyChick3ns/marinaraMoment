@@ -7,7 +7,12 @@ const leftPad = (val) => {
 const ClockDisplay = (props) => (
   <div className='row'>
     <h2 className='text-center'>
-    {`${leftPad(props.currentTime.get('h'))}:${leftPad(props.currentTime.get('m'))}:${leftPad(props.currentTime.get('s'))}`}</h2>
+    {
+      `${leftPad(props.currentTime.get('h'))}:
+      ${leftPad(props.currentTime.get('m'))}:
+      ${leftPad(props.currentTime.get('s'))}`
+    }
+    </h2>
   </div>
 );
 export default ClockDisplay;

@@ -12,13 +12,13 @@ class ClockConfig extends Component {
 
     switch(event.target.id) {
       case 'hours':
-      newDefaultTime.subtract(this.props.defaultTime.get('hours')).add(event.target.value,'hours');
+      newDefaultTime.subtract(this.props.defaultTime.get('hours'),'hours').add(parseInt(event.target.value, 10),'hours');
         break;
       case 'minutes':
-        newDefaultTime.subtract(this.props.defaultTime.get('minutes')).add(event.target.value,'minutes');
+        newDefaultTime.subtract(this.props.defaultTime.get('minutes'),'minutes').add(parseInt(event.target.value, 10),'minutes');
         break;
       case 'seconds':
-        newDefaultTime.subtract(this.props.defaultTime.get('seconds')).add(event.target.value,'seconds');
+        newDefaultTime.subtract(this.props.defaultTime.get('seconds'),'seconds').add(parseInt(event.target.value, 10),'seconds');
         break;
       default:
         break;
@@ -70,7 +70,7 @@ class ClockConfig extends Component {
             </div>
             <div className='col-sm-9'>
             <input
-              id='minutes'
+              id='seconds'
               className='form-control'
               type='number'
               defaultValue={this.props.defaultTime.get('seconds')}
