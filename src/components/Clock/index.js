@@ -16,10 +16,11 @@ class Clock extends Component {
     };
     this.setDefaultTime = this.setDefaultTime.bind(this);
     this.startClock = this.startClock.bind(this);
-    this.reduceTimer = this.reduceTimer.bind(this);
+    this.stopClock = this.stopClock.bind(this);
+    this.reduceClock = this.reduceClock.bind(this);
 
   }
-  reduceTimer() {
+  reduceClock() {
     const newTime = moment.duration(this.state.currentTime);
     newTime.subtract(1,'second');
 
@@ -38,7 +39,21 @@ class Clock extends Component {
   startClock() {
     this.setState({
       clockState: clockState.RUNNING,
-      timer: setInterval(this.reduceTimer, 1000)
+      timer: setInterval(this.reduceClock, 1000)
+    });
+  }
+  stopClock() {
+    if (this.state.timer) clearInterval(this.state.timer);
+    this.setState({
+      clockState: clockState.NOT_SET,
+      timer: null,
+      currentTime: moment.duration(this.state.defaultTime)
+    });
+  }
+  completeClock() {
+    this.setState({
+      clockState: clockState.RUNNING,
+      timer: setInterval(this.reduceClock, 1000)
     });
   }
 
@@ -47,7 +62,10 @@ class Clock extends Component {
       <div className='container-fluid'>
         <ClockHeader/>
         <ClockDisplay currentTime={this.state.currentTime}/>
-        <ClockButton startClock={this.startClock} clockState={this.state.clockState}/>
+        <ClockButton
+          startClock={this.startClock}
+          stopClock={this.stopClock}
+          clockState={this.state.clockState}/>
           {(this.state.clockState !== clockState.RUNNING) &&
             <ClockConfig
               defaultTime= {this.state.defaultTime}
