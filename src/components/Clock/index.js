@@ -21,6 +21,11 @@ class Clock extends Component {
 
   }
   reduceClock() {
+    if (this.state.currentTime.get('hours') === 0 && this.state.currentTime.get('minutes') === 0 && this.state.currentTime.get('seconds') === 0  ) {
+      this.completeClock();
+      return;
+    }
+
     const newTime = moment.duration(this.state.currentTime);
     newTime.subtract(1,'second');
 
@@ -51,9 +56,11 @@ class Clock extends Component {
     });
   }
   completeClock() {
+    if (this.state.timer) clearInterval(this.state.timer);
+
     this.setState({
-      clockState: clockState.RUNNING,
-      timer: setInterval(this.reduceClock, 1000)
+      clockState: clockState.COMPLETE,
+      timer: null
     });
   }
 
@@ -61,7 +68,7 @@ class Clock extends Component {
     return (
       <div className='container-fluid'>
         <ClockHeader/>
-        <ClockDisplay currentTime={this.state.currentTime}/>
+        <ClockDisplay clockState={this.state.clockState} currentTime={this.state.currentTime}/>
         <ClockButton
           startClock={this.startClock}
           stopClock={this.stopClock}
