@@ -66,14 +66,18 @@ class Clock extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container-fluid'>
         <ClockHeader/>
         <ClockDisplay clockState={this.state.clockState} currentTime={this.state.currentTime}/>
         <ClockButton
           startClock={this.startClock}
           stopClock={this.stopClock}
           clockState={this.state.clockState}/>
-
+          {(this.state.clockState !== clockState.RUNNING) &&
+            <ClockConfig
+              defaultTime= {this.state.defaultTime}
+              setDefaultTime={this.setDefaultTime}
+            />}
       </div>
     )
 
