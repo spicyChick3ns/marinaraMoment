@@ -6,11 +6,14 @@ import Clock from './components/Clock/index';
 class App extends Component {
   render() {
     return (
-      <Panel className='app-content center-block'>
-        <Panel.Body>
+      <div>
+        <div className='eh app-content center-block'>
           <Clock/>
-        </Panel.Body>
-      </Panel>
+
+        </div>
+        <div id='top-left'>{false}</div>
+      </div>  
+
     );
   }
 }
