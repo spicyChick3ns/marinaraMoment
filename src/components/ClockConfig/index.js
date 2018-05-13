@@ -11,9 +11,9 @@ class ClockConfig extends Component {
     const newDefaultTime=this.props.defaultTime;
 
     switch(event.target.id) {
-      case 'hours':
-      newDefaultTime.subtract(this.props.defaultTime.get('hours'),'hours').add(parseInt(event.target.value, 10),'hours');
-        break;
+      // case 'hours':
+      // newDefaultTime.subtract(this.props.defaultTime.get('hours'),'hours').add(parseInt(event.target.value, 10),'hours');
+        // break;
       case 'minutes':
         newDefaultTime.subtract(this.props.defaultTime.get('minutes'),'minutes').add(parseInt(event.target.value, 10),'minutes');
         break;
@@ -30,23 +30,6 @@ class ClockConfig extends Component {
     return(
       <div className='row'>
         <h2 className='text-primary'>Set Timer</h2>
-        <div className='row control-row'>
-          <div className='form-group'>
-            <div className='col-sm-3'>
-              <label htmlFor='hours'>Hours</label>
-            </div>
-            <div className='col-sm-9'>
-              <input
-                id='hours'
-                className='form-control'
-                type='number'
-                defaultValue={this.props.defaultTime.get('hours')}
-                onChange={this.handleChange}
-              />
-            </div>
-
-          </div>
-        </div>
         <div className='row control-row'>
           <div className='form-group'>
             <div className='col-sm-3'>

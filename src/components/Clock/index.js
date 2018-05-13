@@ -9,19 +9,22 @@ class Clock extends Component {
   constructor() {
     super();
     this.state =  {
-      currentTime: moment.duration(25, 'minutes'),
-      defaultTime: moment.duration(25, 'minutes'),
+      currentTime: moment.duration(1, 'seconds'),
+      defaultTime: moment.duration(1, 'seconds'),
       clockState : clockState.NOT_SET,
-      timer: null
+      timer: null,
+      cycleCount: 0
     };
     this.setDefaultTime = this.setDefaultTime.bind(this);
     this.startClock = this.startClock.bind(this);
     this.stopClock = this.stopClock.bind(this);
     this.reduceClock = this.reduceClock.bind(this);
+    this.shortBreak = this.shortBreak.bind(this);
+
 
   }
   reduceClock() {
-    if (this.state.currentTime.get('hours') === 0 && this.state.currentTime.get('minutes') === 0 && this.state.currentTime.get('seconds') === 0  ) {
+    if (this.state.currentTime.get('minutes') === 0 && this.state.currentTime.get('seconds') === 0  ) {
       this.completeClock();
       return;
     }
@@ -43,6 +46,8 @@ class Clock extends Component {
   }
   startClock() {
     this.setState({
+      currentTime: moment.duration(this.state.defaultTime),
+
       clockState: clockState.RUNNING,
       timer: setInterval(this.reduceClock, 1000)
     });
@@ -63,6 +68,13 @@ class Clock extends Component {
       timer: null
     });
   }
+  shortBreak() {
+    this.setState({
+      currentTime: moment.duration(5, 'minutes'),
+      clockState: clockState.SHORT_BREAK
+
+    });
+  }
 
   render() {
     return (
@@ -72,8 +84,8 @@ class Clock extends Component {
         <ClockButton
           startClock={this.startClock}
           stopClock={this.stopClock}
+          shortBreak={this.shortBreak}
           clockState={this.state.clockState}/>
-
       </div>
     )
 

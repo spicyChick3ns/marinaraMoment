@@ -9,15 +9,13 @@ const ClockDisplay = (props) => (
     <div>
       {
         (props.clockState === clockState.COMPLETE) &&
-          <iframe className='center-block youtube-responsive-width' height='315' src='https://www.youtube.com/watch?v=6NXnxTNIWkc'></iframe>
+          window.alert('Break time!')
       }
     </div>
     <div className='row'>
       <h2 className='text-center'>
         {
-          `${leftPad(props.currentTime.get('h'))}:
-          ${leftPad(props.currentTime.get('m'))}:
-          ${leftPad(props.currentTime.get('s'))}`
+          `${leftPad(props.currentTime.get('m'))}:${leftPad(props.currentTime.get('s'))}`
         }
       </h2>
     </div>
