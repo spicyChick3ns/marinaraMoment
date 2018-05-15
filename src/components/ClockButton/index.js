@@ -6,7 +6,6 @@ class ClockButton extends Component{
     super();
     this.getButton = this.getButton.bind(this);
   }
-  //TODO: return the correct button
   getButton() {
     switch (this.props.clockState) {
       case clockState.NOT_SET:
@@ -15,6 +14,8 @@ class ClockButton extends Component{
         return (<button className='btn btn-danger center-block' onClick={this.props.stopClock}>Stop</button>);
       case clockState.COMPLETE:
         return (<button className='btn btn-info center-block' onClick={this.props.startClock}>Reset</button>);
+      case clockState.SHORT_BREAK:
+        return (<button className='btn btn-info center-block' onClick={this.props.shortBreak}>Short Break</button>);
       default:
         break;
     }

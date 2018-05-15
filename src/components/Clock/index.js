@@ -20,30 +20,28 @@ class Clock extends Component {
     this.stopClock = this.stopClock.bind(this);
     this.reduceClock = this.reduceClock.bind(this);
     this.shortBreak = this.shortBreak.bind(this);
-
-
   }
+
   reduceClock() {
     if (this.state.currentTime.get('minutes') === 0 && this.state.currentTime.get('seconds') === 0  ) {
       this.completeClock();
       return;
     }
-
     const newTime = moment.duration(this.state.currentTime);
     newTime.subtract(1,'second');
 
     this.setState({
       currentTime: newTime
     });
-
   }
+
   setDefaultTime(newDefaultTime) {
     this.setState({
       defaultTime: newDefaultTime,
       currentTime: newDefaultTime,
-
     });
   }
+
   startClock() {
     this.setState({
       currentTime: moment.duration(this.state.defaultTime),
@@ -52,6 +50,7 @@ class Clock extends Component {
       timer: setInterval(this.reduceClock, 1000)
     });
   }
+
   stopClock() {
     if (this.state.timer) clearInterval(this.state.timer);
     this.setState({
@@ -60,19 +59,21 @@ class Clock extends Component {
       currentTime: moment.duration(this.state.defaultTime)
     });
   }
+
   completeClock() {
     if (this.state.timer) clearInterval(this.state.timer);
-
-    this.setState({
-      clockState: clockState.COMPLETE,
-      timer: null
-    });
+      this.setState({
+        clockState: clockState.COMPLETE,
+        timer: null
+      });
   }
+
   shortBreak() {
     this.setState({
       currentTime: moment.duration(5, 'minutes'),
-      clockState: clockState.SHORT_BREAK
-
+      clockState: clockState.SHORT_BREAK,
+      timer: setInterval(this.reduceClock, 1000),
+      cycleCount: this.state.cycleCount + 1
     });
   }
 

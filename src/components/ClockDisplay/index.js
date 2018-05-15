@@ -8,7 +8,7 @@ const ClockDisplay = (props) => (
   <div>
     <div>
       {
-        (props.clockState === clockState.COMPLETE) &&
+        (props.clockState === clockState.SHORT_BREAK) &&
           window.alert('Break time!')
       }
     </div>
