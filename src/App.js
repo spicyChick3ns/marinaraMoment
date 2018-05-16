@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Panel} from 'react-bootstrap';
 import './App.css';
 import Clock from './components/Clock/index';
 
@@ -12,7 +11,7 @@ class App extends Component {
 
         </div>
         <div id='top-left'>{false}</div>
-      </div>  
+      </div>
 
     );
   }

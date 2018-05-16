@@ -13,7 +13,7 @@ class Clock extends Component {
       defaultTime: moment.duration(1, 'seconds'),
       clockState : clockState.NOT_SET,
       timer: null,
-      cycleCount: 0
+      cycle: false
     };
     this.setDefaultTime = this.setDefaultTime.bind(this);
     this.startClock = this.startClock.bind(this);
@@ -45,9 +45,9 @@ class Clock extends Component {
   startClock() {
     this.setState({
       currentTime: moment.duration(this.state.defaultTime),
-
       clockState: clockState.RUNNING,
-      timer: setInterval(this.reduceClock, 1000)
+      timer: setInterval(this.reduceClock, 1000),
+      cycle: false
     });
   }
 
@@ -62,18 +62,27 @@ class Clock extends Component {
 
   completeClock() {
     if (this.state.timer) clearInterval(this.state.timer);
+
+    if (this.state.clockState===clockState.RUNNING && this.state.cycle===false) {
       this.setState({
-        clockState: clockState.COMPLETE,
+        clockState: clockState.SHORT_BREAK,
         timer: null
       });
+    } else {
+      this.setState({
+        clockState: clockState.RUNNING,
+        currentTime: moment.duration(this.state.defaultTime),
+        timer: null
+      });
+    }
   }
 
   shortBreak() {
     this.setState({
-      currentTime: moment.duration(5, 'minutes'),
-      clockState: clockState.SHORT_BREAK,
+      currentTime: moment.duration(5, 'seconds'),
+      clockState: clockState.RUNNING,
       timer: setInterval(this.reduceClock, 1000),
-      cycleCount: this.state.cycleCount + 1
+      cycle: true
     });
   }
 
