@@ -7,14 +7,12 @@ const leftPad = (val) => {
 }
 const ClockDisplay = (props) => (
   <div>
-  /*
     <div>
       {
         (props.clockState === clockState.SHORT_BREAK) &&
           window.alert('Break time!')
       }
     </div>
-    */
     <div className='row'>
       <h2 className='text-center'>
         {

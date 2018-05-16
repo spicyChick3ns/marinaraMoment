@@ -70,8 +70,7 @@ class Clock extends Component {
       });
     } else {
       this.setState({
-        clockState: clockState.RUNNING,
-        currentTime: moment.duration(this.state.defaultTime),
+        clockState: clockState.COMPLETE,
         timer: null
       });
     }
