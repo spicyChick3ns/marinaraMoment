@@ -30,26 +30,3 @@ body  {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-.eh {
-    width: 250px;
-    height: 250px;
-    -webkit-clip-path: ellipse(50% 49% at 50% 50%);
-    clip-path: ellipse(50% 49% at 50% 50%);
-    background-color: #e74c3c;
-    position: absolute;
-    left: 75px;
-    top: 50px;
-    overflow: hidden;
-}
-
-#top-left {
--webkit-clip-path: inset(5% 20% 15% 10% round 0% 50% 0% 50%);
-clip-path: inset(5% 20% 15% 10% round 0% 50% 0% 50%);    width: 100px;
-    height: 100px;
-    background: green;
-    position: relative;
-    left: 190px;
-    bottom: -100px;
-    z-index:2;
-}

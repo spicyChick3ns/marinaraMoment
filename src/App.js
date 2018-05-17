@@ -6,11 +6,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className='eh app-content center-block'>
+        <div className='app-content center-block'>
           <Clock/>
-
         </div>
-        <div id='top-left'>{false}</div>
       </div>
 
     );
