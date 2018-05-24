@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import * as clockState from '../../clockStates';
 
 const leftPad = (val) => {
   if (val<10) return `0${val}`;
   return `${val}`;
+}
+class ClockDisplay extends Component{ 
+  constructor() {
+    super();
+  }
 }
 const ClockDisplay = (props) => (
   <div>
