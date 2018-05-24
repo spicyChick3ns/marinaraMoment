@@ -9,8 +9,8 @@ class Clock extends Component {
   constructor() {
     super();
     this.state =  {
-      currentTime: moment.duration(1, 'seconds'),
-      defaultTime: moment.duration(1, 'seconds'),
+      currentTime: moment.duration(25, 'minutes'),
+      defaultTime: moment.duration(25, 'minutes'),
       clockState : clockState.NOT_SET,
       timer: null,
       cycle: false
@@ -78,7 +78,7 @@ class Clock extends Component {
 
   shortBreak() {
     this.setState({
-      currentTime: moment.duration(5, 'seconds'),
+      currentTime: moment.duration(5, 'minutes'),
       clockState: clockState.RUNNING,
       timer: setInterval(this.reduceClock, 1000),
       cycle: true
