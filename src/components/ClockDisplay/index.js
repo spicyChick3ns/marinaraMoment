@@ -14,6 +14,7 @@ const numbers = [
 ]
 
 
+
 const leftPad = (val) => {
   if (val<10) return `0${val}`;
   return `${val}`;
@@ -21,8 +22,14 @@ const leftPad = (val) => {
 class ClockDisplay extends Component{
   constructor() {
     super();
+    // `${leftPad(this.props.currentTime.get('m'))}:${leftPad(this.props.currentTime.get('s'))}`
+
   }
   render()  {
+    let digits = {
+      tens : this.props.currentTime.get('m').toString(),
+      ones: this.props.currentTime.get('s').toString()
+    }
     return (
       <div>
         <div>
@@ -33,9 +40,14 @@ class ClockDisplay extends Component{
         </div>
         <div className='row'>
           <h2 className='text-center'>
-            {}
             {
-              `${leftPad(this.props.currentTime.get('m'))}:${leftPad(this.props.currentTime.get('s'))}`
+              <div>
+                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.tens[0]}`]}"></path></svg>`}} />
+                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.tens[1]}`]}"></path></svg>`}} />
+                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.ones[0]}`]}"></path></svg>`}} />
+                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.ones[1]}`]}"></path></svg>`}} />
+              </div>
+
             }
           </h2>
         </div>
