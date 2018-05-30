@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import * as clockState from '../../clockStates';
+// import './index.css'
 const numbers = [
   "M66,130 C101.227,129.927 129.906,101.221 130,66 C129.915,30.778 101.223,2.084 66,2 C30.829,2.143 2.085,30.815 2,66 C2.106,101.182 30.821,129.882 66,130 L66,130 Z",
   "M50,2 L80.813,2 L80.813,130 L50,130 L50,2 Z",
@@ -14,7 +15,7 @@ const numbers = [
 ]
 
 
-
+const colours = ['#1abc9c','#2ecc71','#9b59b6','#d35400','#e74c3c'];
 const leftPad = (val) => {
   if (val<10) return `0${val}`;
   return `${val}`;
@@ -28,8 +29,11 @@ class ClockDisplay extends Component{
   render()  {
     let digits = {
       tens : this.props.currentTime.get('m').toString(),
-      ones: this.props.currentTime.get('s').toString()
+      ones: this.props.currentTime.get('s').toString(),
+      col: Math.floor(Math.random() * (colours.length - 1))
     }
+    let randCol = colours[digits.col];
+
     return (
       <div>
         <div>
@@ -41,11 +45,35 @@ class ClockDisplay extends Component{
         <div className='row'>
           <h2 className='text-center'>
             {
-              <div>
-                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.tens[0]}`]}"></path></svg>`}} />
-                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.tens[1]}`]}"></path></svg>`}} />
-                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.ones[0]}`]}"></path></svg>`}} />
-                <span dangerouslySetInnerHTML={{__html: `<svg><path d="${numbers[`${digits.ones[1]}`]}"></path></svg>`}} />
+              <div viewBox="0 0 132 132">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html:
+                    `<svg class="countdown-timer" width="132px" fill-rule="evenodd">
+                      <path d="${numbers[`${digits.tens[0]}`]}">
+                      </path>
+                    </svg>`
+                  }}
+                />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      `<svg class="countdown-timer" width="132px" fill-rule="evenodd">
+                        <path d="${numbers[`${digits.tens[1]}`]}" stroke="${randCol}">
+                        </path>
+                      </svg>`
+                    }}
+                />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      `<svg class="countdown-timer" width="132px" fill-rule="evenodd">
+                        <path d="${numbers[`${digits.ones[0]}`]}">
+                        </path>
+                      </svg>`
+                    }}
+                 />
+                <span dangerouslySetInnerHTML={{__html: `<svg class="countdown-timer" width="132px" fill-rule="evenodd"><path d="${numbers[`${digits.ones[1]}`]}"></path></svg>`}} />
               </div>
 
             }
