@@ -4,7 +4,6 @@ import * as clockState from '../../clockStates.js'
 import ClockHeader from '../ClockHeader/index';
 import ClockDisplay from '../ClockDisplay/index';
 import ClockButton from '../ClockButton/index';
-import ClockConfig from '../ClockConfig/index';
 class Clock extends Component {
   constructor() {
     super();
