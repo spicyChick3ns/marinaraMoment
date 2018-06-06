@@ -1,11 +1,8 @@
 .countdown-timer {
-  /* display: block; */
   width: 132px;
   height: 100%;
   text-align: center;
   fill-rule: evenodd;
   stroke-width: 3;
   fill-opacity: 0;
-  /* overflow: hidden; */
-  /* position: relative; */
 }

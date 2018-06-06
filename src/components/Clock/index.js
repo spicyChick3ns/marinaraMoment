@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import * as clockState from '../../clockStates.js'
+import * as clockState from '../../clockStates.js';
 import ClockHeader from '../ClockHeader/index';
 import ClockDisplay from '../ClockDisplay/index';
 import ClockButton from '../ClockButton/index';
+
 class Clock extends Component {
   constructor() {
     super();
@@ -99,6 +100,4 @@ class Clock extends Component {
 
   }
 }
-
-
 export default Clock;

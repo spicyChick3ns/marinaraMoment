@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {TweenMax} from "gsap/TweenMax";
-
 import * as clockState from '../../clockStates';
 import './index.css'
 const numbers = [
@@ -22,14 +20,14 @@ class ClockDisplay extends Component{
 
   render()  {
     let digits = {
-      tens : this.props.currentTime.get('m').toString(),
-      ones: this.props.currentTime.get('s').toString(),
+      minutes : this.props.currentTime.get('m').toString(),
+      seconds: this.props.currentTime.get('s').toString(),
     }
-    if (digits.ones.length===1) {
-      digits.ones= '0'+digits.ones[0];
+    if (digits.seconds.length === 1) {
+      digits.seconds = '0' + digits.seconds[0];
     }
-    if (digits.tens.length===1) {
-      digits.tens= '0'+digits.tens[0];
+    if (digits.minutes.length === 1) {
+      digits.minutes = '0' + digits.minutes[0];
     }
 
     return (
@@ -43,43 +41,20 @@ class ClockDisplay extends Component{
         <div className='row'>
           <h2 className='text-center'>
             {
-              <div >
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html:
-                    `<svg class="countdown-timer" stroke="${colours[Math.floor(Math.random() * (colours.length ))]}">
-                      <path d="${numbers[`${digits.tens[0]}`]}">
-                      </path>
-                    </svg>`
-                  }}
-                />
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      `<svg class="countdown-timer">
-                        <path d="${numbers[`${digits.tens[1]}`]}" stroke="${colours[Math.floor(Math.random() * (colours.length ))]}">
-                        </path>
-                      </svg>`
-                    }}
-                />
+              <div>
+                <svg className="countdown-timer">
+                  <path d={`${numbers[`${digits.minutes[0]}`]}`} stroke={`${colours[Math.floor(Math.random() * (colours.length ))]}`}></path>
+                </svg>
+                <svg className="countdown-timer">
+                  <path d={`${numbers[`${digits.minutes[1]}`]}`} stroke={`${colours[Math.floor(Math.random() * (colours.length ))]}`}></path>
+                </svg>
                 <p></p>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      `<svg class="countdown-timer">
-                        <path d="${numbers[`${digits.ones[0]}`]}" stroke="${colours[Math.floor(Math.random() * (colours.length ))]}">
-                        </path>
-                      </svg>`
-                    }}
-                 />
-                <span dangerouslySetInnerHTML={{
-                  __html:
-                    `<svg class="countdown-timer" stroke="${colours[Math.floor(Math.random() * (colours.length ))]}">
-                      <path d="${numbers[`${digits.ones[1]}`]}">
-                      </path>
-                    </svg>`
-                  }}
-                />
+                <svg className="countdown-timer">
+                  <path d={`${numbers[`${digits.seconds[0]}`]}`} stroke={`${colours[Math.floor(Math.random() * (colours.length ))]}`}></path>
+                </svg>
+                <svg className="countdown-timer">
+                  <path d={`${numbers[`${digits.seconds[1]}`]}`} stroke={`${colours[Math.floor(Math.random() * (colours.length ))]}`}></path>
+                </svg>
               </div>
 
             }
