@@ -4,6 +4,7 @@ import * as clockState from '../../clockStates.js';
 import ClockHeader from '../ClockHeader/index';
 import ClockDisplay from '../ClockDisplay/index';
 import ClockButton from '../ClockButton/index';
+import ClockConfig from '../ClockConfig/index';
 
 class Clock extends Component {
   constructor() {
@@ -88,6 +89,7 @@ class Clock extends Component {
   render() {
     return (
       <div className=''>
+        <ClockConfig setDefaultTime={this.setDefaultTime} defaultTime={this.state.defaultTime} currentTime={this.state.currentTime} clockState={this.state.clockState}/>
         <ClockHeader/>
         <ClockDisplay clockState={this.state.clockState} currentTime={this.state.currentTime}/>
         <ClockButton

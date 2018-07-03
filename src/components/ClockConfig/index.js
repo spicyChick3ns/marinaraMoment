@@ -4,16 +4,21 @@ import React, {Component} from 'react';
 class ClockConfig extends Component {
   constructor() {
     super();
+    this.state = {
+      showConfig : false
+    };
     this.handleChange = this.handleChange.bind(this);
+    this.renderConfig = this.renderConfig.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     const newDefaultTime=this.props.defaultTime;
 
     switch(event.target.id) {
-      // case 'hours':
-      // newDefaultTime.subtract(this.props.defaultTime.get('hours'),'hours').add(parseInt(event.target.value, 10),'hours');
-        // break;
+      case 'hours':
+      newDefaultTime.subtract(this.props.defaultTime.get('hours'),'hours').add(parseInt(event.target.value, 10),'hours');
+        break;
       case 'minutes':
         newDefaultTime.subtract(this.props.defaultTime.get('minutes'),'minutes').add(parseInt(event.target.value, 10),'minutes');
         break;
@@ -24,10 +29,14 @@ class ClockConfig extends Component {
         break;
     }
     this.props.setDefaultTime(newDefaultTime);
-
   }
-  render() {
-    return(
+  handleClick() { 
+    this.setState(prevState => ({
+      showConfig: !prevState.showConfig
+    }));
+  }
+  renderConfig(props) { 
+    return (
       <div className='row'>
         <h2 className='text-primary'>Set Timer</h2>
         <div className='row control-row'>
@@ -42,6 +51,7 @@ class ClockConfig extends Component {
                 type='number'
                 defaultValue={this.props.defaultTime.get('minutes')}
                 onChange={this.handleChange}
+                maxLength="2"
               />
             </div>
           </div>
@@ -58,6 +68,7 @@ class ClockConfig extends Component {
               type='number'
               defaultValue={this.props.defaultTime.get('seconds')}
               onChange={this.handleChange}
+              maxLength="2"
             />
             </div>
           </div>
@@ -66,6 +77,15 @@ class ClockConfig extends Component {
     </div>
     </div>
   );
+  }
+  
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}> Settings</button>
+        {this.state.showConfig ? this.renderConfig() : ''}
+      </div>
+    );
   };
 };
 
